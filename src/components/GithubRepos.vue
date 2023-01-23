@@ -12,6 +12,8 @@
 
 <script>
   import {debouncerDecorator} from '@/helpers/debouncer.js'
+  import {api} from '@/api/api.js'
+
   export default {
     data: () => ({
       user: null,
@@ -21,16 +23,13 @@
     }),
     methods: {
       procuraUsuariosGithub: debouncerDecorator(function () {
-        console.log('faz de conta que eu perguntei pro github:' + this.usersearch)
         this.userloading = true
-        setTimeout(() => {
-          this.userlist = [
-            {login: 'joao'},
-            {login: 'jose'}
-          ]
+        debugger
+        api.search_users(this.usersearch).then(data => {
+          this.userlist = data.items
           this.userloading = false
-        }, 1000)
-      }, 500)
+        })
+      }, 500),
     },
     watch: {
       usersearch() {
