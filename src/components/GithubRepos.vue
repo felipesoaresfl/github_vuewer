@@ -59,7 +59,8 @@
         this.searchUsersGithub()
       },
       user() {
-        this.listReposGithub()
+        if(this.user)
+          this.listReposGithub()
       },
       repo() {
         console.log(this.repo)
