@@ -6,7 +6,6 @@ function later(result) {
     });
 }
 
-
 export const api = {
     async search_users(searchstring){
         const result = {
@@ -19,8 +18,8 @@ export const api = {
     },
     async list_repos(username){
         const result = [
-            {name: 'Django', owner: 'joao'},
-            {name: 'Vue.js', owner: 'jose'},
+            {name: 'Django', owner: {login: 'joao'}},
+            {name: 'Vue.js', owner: {login: 'jose'}},
         ]
         return later(result)
     }
