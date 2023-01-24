@@ -1,6 +1,6 @@
 <template>
     <v-container>
-      <GithubRepos @reposelected="onRepoSelected"/>
+      <GithubRepos @repo-selected="onRepoSelected"/>
       <GithubIssues :repo="repo"/>
     </v-container>
 </template>

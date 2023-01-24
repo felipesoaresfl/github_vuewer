@@ -22,8 +22,8 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <v-progress-circular indeterminate color="primary" v-if="loading"></v-progress-circular>
         <v-btn color="primary" v-if="haveMoreIssues" @click="listIssues">More</v-btn>
+        <v-progress-circular indeterminate class="text-center" color="primary" v-if="loading"></v-progress-circular>
       </v-col>
     </v-row>
   </v-container>
@@ -31,7 +31,7 @@
 
 <script>
 
-import {api} from '~api'
+import {api} from '@/api/api.js'
 
 export default {
 	props: ['repo'],
@@ -44,7 +44,7 @@ export default {
 	methods: {
 		async listIssues(){
 			this.loading = true
-			const moreIssues = await api.listIssues(this.repo.owner.login, this.repo.name, this.currentPage)
+			const moreIssues = await api.list_issues(this.repo.owner.login, this.repo.name, this.currentPage)
 		this.issues = this.issues.concat(moreIssues)
 			this.currentPage++
 			this.loading = false

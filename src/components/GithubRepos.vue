@@ -5,17 +5,17 @@
         <v-autocomplete
           v-model="user"
           label="Find your user"
-          :items="userlist"
-          :loading="userloading"
-          :search-input.sync="usersearch"
+          :items="userList"
+          :loading="userLoading"
+          :search-input.sync="userSearch"
           item-text="login"
         />
       </v-col>
       <v-col cols="6">
         <v-select
           v-model="repo"
-          :items="repolist"
-          :loading="repoloading"
+          :items="repoList"
+          :loading="repoLoading"
           item-text="name"
           label="Select your repository"
           return-object
@@ -34,28 +34,28 @@
     data: () => ({
       repo: null,
       user: null,
-      usersearch: null,
-      repolist: [],
-      userlist: [],
-      repoloading: false,
-      userloading: false,
+      userSearch: null,
+      repoList: [],
+      userList: [],
+      repoLoading: false,
+      userLoading: false,
     }),
     methods: {
       searchUsersGithub: debouncerDecorator( async function () {
-        this.userloading = true
-        const data = await api.search_users(this.usersearch)
-        this.userlist = data.items
-        this.userloading = false
+        this.userLoading = true
+        const data = await api.search_users(this.userSearch)
+        this.userList = data.items
+        this.userLoading = false
       }, 500),
       async listReposGithub () {
-        this.repoloading = true
+        this.repoLoading = true
         const data = await api.list_repos(this.user)
-        this.repolist = data
-        this.repoloading = false
+        this.repoList = data
+        this.repoLoading = false
       }
     },
     watch: {
-      usersearch() {
+      userSearch() {
         this.searchUsersGithub()
       },
       user() {
@@ -63,7 +63,7 @@
           this.listReposGithub()
       },
       repo() {
-        console.log(this.repo)
+        this.$emit('repo-selected', this.repo)
       }
     },
   }
