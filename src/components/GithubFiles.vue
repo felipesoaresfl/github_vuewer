@@ -74,7 +74,7 @@ export default {
       const contents = await api.list_folder_content(this.repo.owner.login, this.repo.name, path);
 			gitPath.push(this.repo.owner.login, this.repo.name, path)
       this.actualPath = gitPath.join('/')
-			
+			// a lógica está feia mas está funcionando, vou arrumar
       let newPreviousPathList = path.split("/");
       newPreviousPathList.pop();
       const newPreviousPath = newPreviousPathList.join("/");
