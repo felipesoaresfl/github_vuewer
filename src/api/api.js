@@ -30,5 +30,10 @@ export const api = {
 		const url = `https://api.github.com/repos/${owner}/${name}/issues?page=${page}`
     const response = await fetch(url)
     return await response.json()
-	}
+	},
+	async get_files(owner, reponame) {
+    const url = `https://api.github.com/repos/${owner}/${reponame}/contents/`;
+    const response = await fetch(url);
+    return await response.json();
+  },
 }

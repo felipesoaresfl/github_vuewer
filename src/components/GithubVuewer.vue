@@ -1,17 +1,20 @@
 <template>
     <v-container>
       <GithubRepos @repo-selected="onRepoSelected"/>
-      <GithubIssues :repo="repo"/>
+      <!-- <GithubIssues :repo="repo"/> -->
+      <GithubFiles :repo="repo"/>
     </v-container>
 </template>
 
 <script>
 import GithubRepos from './GithubRepos';
-import GithubIssues from './GithubIssues';
+import GithubFiles from './GithubFiles';
+// import GithubIssues from './GithubIssues';
 export default {
     components: {
       GithubRepos,
-      GithubIssues,
+      GithubFiles,
+      // GithubIssues,
     },
     data: () => ({
       repo: null
