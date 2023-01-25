@@ -2,10 +2,9 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-				<v-banner
-					v-if="actualPath"
-				>
-					📂 {{actualPath}}
+				<v-banner v-if="actualPath">
+					<v-icon> mdi-folder-account</v-icon>
+						{{actualPath}}
 				</v-banner>
         <v-simple-table>
           <template v-slot:default>
