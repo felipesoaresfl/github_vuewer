@@ -33,7 +33,7 @@
                 </td>
 							</tr>
 							<div v-if="typeof previousPath == 'string'">
-								<v-btn class="ma-2" outlined color="teal" @click="goBack">
+								<v-btn class="ma-2" outlined color="deep-purple darken-3" @click="goBack">
                   Back
 								</v-btn>
 							</div>
@@ -44,7 +44,7 @@
     </v-row>
     <v-row>
       <v-col cols="12">
-        <v-progress-circular indeterminate class="text-center" color="primary" v-if="loading"></v-progress-circular>
+        <v-progress-circular indeterminate class="text-center" color="deep-purple darken-3" v-if="loading"></v-progress-circular>
       </v-col>
     </v-row>
   </v-container>
