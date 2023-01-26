@@ -2,9 +2,13 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-				<v-banner v-if="actualPath">
+				<v-banner v-if="!actualPath" class="text-left">
 					<v-icon> mdi-folder-account</v-icon>
-						{{actualPath}}
+					{{ repo.name }}
+				</v-banner>
+				<v-banner v-else>
+					<v-icon> mdi-folder-account</v-icon>
+					{{actualPath}}
 				</v-banner>
         <v-simple-table>
           <template v-slot:default>
@@ -18,7 +22,6 @@
 								<td v-if="isDirectory(content.type)">
                   <v-icon class="icon">mdi-folder</v-icon>
                   <button
-                    class="directory teal--text text-decoration-underline"
                     @click="openDirectory(content.path)"
                   >
                     {{ content.name }}
@@ -26,7 +29,7 @@
 								</td>
 								<td v-else>
                   <v-icon class="icon">mdi-file-outline</v-icon>
-                  {{ content.name }}
+                    {{ content.name }}
                 </td>
 							</tr>
 							<div v-if="typeof previousPath == 'string'">
@@ -65,6 +68,7 @@ export default {
 			this.loading = true
 			const contents = await api.get_files(this.repo.owner.login, this.repo.name)
 			this.contents = this.contents.concat(contents)
+			this.previousPath = null
 			this.loading = false
 		},
 		async listFolderContent(path) {
@@ -92,6 +96,7 @@ export default {
       if (this.previousPath == "") {
         this.contents = [];
         this.listContent();
+				this.actualPath = ''
       } else {
         this.contents = [];
         this.listFolderContent(this.previousPath);
